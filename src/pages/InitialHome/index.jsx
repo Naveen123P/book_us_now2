@@ -54,7 +54,7 @@ const InitialHome = () => {
     useEffect( () => {
         const getRecommendedEvents = async () => {
             setRecommendedLoading(true)
-            const response = await fetch("https://gg-backend-assignment.azurewebsites.net/api/Events?code=FOX643kbHEAkyPbdd8nwNLkekHcL4z0hzWBGCd64Ur7mAzFuRCHeyQ==&type=reco")
+            const response = await fetch("")
             if(response.ok){
                 const data = await response.json()
                 const updatedEvents = data.events.map(event => {
@@ -75,7 +75,7 @@ const InitialHome = () => {
     useEffect(() => {
         const getUpcomingEvents = async () => {
             setUpcomingLoading(true)
-            const response = await fetch("https://gg-backend-assignment.azurewebsites.net/api/Events?code=FOX643kbHEAkyPbdd8nwNLkekHcL4z0hzWBGCd64Ur7mAzFuRCHeyQ==&page=1&type=upcoming")
+            const response = await fetch("")
             if(response.ok){
                 const data = await response.json()
                 const updatedEvents = data.events.map(event => {
