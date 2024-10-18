@@ -175,6 +175,7 @@ const InitialHome = () => {
                 <div className="non-categories-container">
                 <div className='m-logo-location-container'>
                     <p className='m-logo-name'>BookUsNow</p>
+                    {/* location */}
                     <div className='location-container'>
                         <IoLocationSharp className='icons-style' />
                         <span className="common-para-1 subtitle">
