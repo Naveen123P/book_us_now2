@@ -51,46 +51,46 @@ const InitialHome = () => {
     const [upcomingLoading, setUpcomingLoading] = useState(false)
     const navigate = useNavigate();
 
-    useEffect( () => {
-        const getRecommendedEvents = async () => {
-            setRecommendedLoading(true)
-            const response = await fetch("")
-            if(response.ok){
-                const data = await response.json()
-                const updatedEvents = data.events.map(event => {
-                    const fileId = event.imgUrl.match(/\/d\/(.+)\//)[1]
-                     return {
-                       ...event,
-                       imgUrl: `https://drive.google.com/thumbnail?id=${fileId}`,
-                     }
-                   })         
-                setRecommendedEvents(updatedEvents)
-                setRecommendedLoading(false)
-            }            
-        }
-        getRecommendedEvents()
+    // useEffect( () => {
+    //     const getRecommendedEvents = async () => {
+    //         setRecommendedLoading(true)
+    //         // const response = await fetch("https://gg-backend-assignment.azurewebsites.net/api/Events?code=FOX643kbHEAkyPbdd8nwNLkekHcL4z0hzWBGCd64Ur7mAzFuRCHeyQ==&type=reco")
+    //         if(response.ok){
+    //             const data = await response.json()
+    //             const updatedEvents = data.events.map(event => {
+    //                 const fileId = event.imgUrl.match(/\/d\/(.+)\//)[1]
+    //                  return {
+    //                    ...event,
+    //                    imgUrl: `https://drive.google.com/thumbnail?id=${fileId}`,
+    //                  }
+    //                })         
+    //             setRecommendedEvents(updatedEvents)
+    //             setRecommendedLoading(false)
+    //         }            
+    //     }
+    //     getRecommendedEvents()
         
-    }, [])
+    // }, [])
 
-    useEffect(() => {
-        const getUpcomingEvents = async () => {
-            setUpcomingLoading(true)
-            const response = await fetch("")
-            if(response.ok){
-                const data = await response.json()
-                const updatedEvents = data.events.map(event => {
-                    const fileId = event.imgUrl.match(/\/d\/(.+)\//)[1]
-                     return {
-                       ...event,
-                       imgUrl: `https://drive.google.com/thumbnail?id=${fileId}`,
-                     }
-                   }) 
-                SetUpcomingEvents(updatedEvents)
-                setUpcomingLoading(false)
-            }            
-        }
-        getUpcomingEvents()
-    }, [])
+    // useEffect(() => {
+    //     const getUpcomingEvents = async () => {
+    //         setUpcomingLoading(true)
+    //         // const response = await fetch("https://gg-backend-assignment.azurewebsites.net/api/Events?code=FOX643kbHEAkyPbdd8nwNLkekHcL4z0hzWBGCd64Ur7mAzFuRCHeyQ==&page=1&type=upcoming")
+    //         if(response.ok){
+    //             const data = await response.json()
+    //             const updatedEvents = data.events.map(event => {
+    //                 const fileId = event.imgUrl.match(/\/d\/(.+)\//)[1]
+    //                  return {
+    //                    ...event,
+    //                    imgUrl: `https://drive.google.com/thumbnail?id=${fileId}`,
+    //                  }
+    //                }) 
+    //             SetUpcomingEvents(updatedEvents)
+    //             setUpcomingLoading(false)
+    //         }            
+    //     }
+    //     getUpcomingEvents()
+    // }, [])
 
     const onClickSignUp = () => {
         navigate('/signup');
