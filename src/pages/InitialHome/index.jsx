@@ -50,6 +50,47 @@ const InitialHome = () => {
     const [upcomingEvents, SetUpcomingEvents] = useState([])
     const [upcomingLoading, setUpcomingLoading] = useState(false)
     const navigate = useNavigate();
+
+    useEffect( () => {
+        const getRecommendedEvents = async () => {
+            setRecommendedLoading(true)
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Events?code=${process.env.REACT_APP_AZURE_FUNCTION_KEY}&type=reco`)
+            if(response.ok){
+                const data = await response.json()
+                const updatedEvents = data.events.map(event => {
+                    const fileId = event.imgUrl.match(/\/d\/(.+)\//)[1]
+                    return {
+                      ...event,
+                      imgUrl: `https://drive.google.com/thumbnail?id=${fileId}`,
+                    }
+                })         
+                setRecommendedEvents(updatedEvents)
+                setRecommendedLoading(false)
+            }            
+        }
+        getRecommendedEvents()
+        
+    }, [])
+    
+    useEffect(() => {
+        const getUpcomingEvents = async () => {
+            setUpcomingLoading(true)
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Events?code=${process.env.REACT_APP_AZURE_FUNCTION_KEY}&page=1&type=upcoming`)
+            if(response.ok){
+                const data = await response.json()
+                const updatedEvents = data.events.map(event => {
+                    const fileId = event.imgUrl.match(/\/d\/(.+)\//)[1]
+                    return {
+                      ...event,
+                      imgUrl: `https://drive.google.com/thumbnail?id=${fileId}`,
+                    }
+                }) 
+                SetUpcomingEvents(updatedEvents)
+                setUpcomingLoading(false)
+            }            
+        }
+        getUpcomingEvents()
+    }, [])
     
 
     const onClickSignUp = () => {
