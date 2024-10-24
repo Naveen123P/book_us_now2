@@ -40,6 +40,12 @@ const categories = [
         name: "Activities",
     }
 ]
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
+const azureKey = import.meta.env.VITE_AZURE_FUNCTION_KEY;
+
+console.log('API Base URL:', apiUrl);
+console.log('Azure Function Key:', azureKey);
+
 
 let isLogin = false
 
@@ -54,7 +60,7 @@ const InitialHome = () => {
     useEffect( () => {
         const getRecommendedEvents = async () => {
             setRecommendedLoading(true)
-            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Events?code=${process.env.REACT_APP_AZURE_FUNCTION_KEY}&type=reco`)
+            const response = await fetch(`${apiUrl}/api/Events?code=${azureKey}&type=reco`)
             if(response.ok){
                 const data = await response.json()
                 const updatedEvents = data.events.map(event => {
@@ -75,7 +81,7 @@ const InitialHome = () => {
     useEffect(() => {
         const getUpcomingEvents = async () => {
             setUpcomingLoading(true)
-            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Events?code=${process.env.REACT_APP_AZURE_FUNCTION_KEY}&page=1&type=upcoming`)
+            const response = await fetch(`${apiUrl}/api/Events?code=${azureKey}&page=1&type=upcoming`)
             if(response.ok){
                 const data = await response.json()
                 const updatedEvents = data.events.map(event => {
